@@ -1,85 +1,161 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# SIG-DB: Sistema de Gestão de Depósitos de Bebidas (API)
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+Este repositório contém o **Backend (API)** desenvolvido como parte do Trabalho de Conclusão de Curso (TCC II) de Engenharia de Software.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+O sistema foi construído utilizando **Node.js**, **NestJS** e **PostgreSQL**, integrando funcionalidades de gestão (CRUD) e automação via **OCR** e leitura de **XML**.
 
-## Description
+---
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+## 📋 Pré-requisitos
 
-## Project setup
+Para executar este projeto, certifique-se de ter as seguintes ferramentas instaladas em sua máquina:
+
+* **Node.js** (Versão 18 ou superior - LTS recomendada)
+* **NPM** (Gerenciador de pacotes padrão do Node)
+* **PostgreSQL** (Banco de dados relacional)
+* **Postman** ou **Insomnia** (Para testar as rotas da API, já que não há interface gráfica)
+* **Git** (Para clonar o repositório)
+
+---
+
+## 🚀 Passo a Passo para Instalação e Execução
+
+### 1. Clonar o Repositório
+
+Abra o terminal e execute o comando:
 
 ```bash
-$ npm install
+git clone [https://github.com/Joicemota99/sig-db-api.git](https://github.com/Joicemota99/sig-db-api.git)
+cd sig-db-api
 ```
-
-## Compile and run the project
+### 2. Instalar Dependências
+Instale as bibliotecas necessárias (incluindo NestJS, TypeORM e Tesseract.js) com o comando:
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
+### 3. Configuração do Banco de Dados
+Certifique-se de que o serviço do PostgreSQL está rodando.
 
-## Run tests
+Crie um banco de dados vazio chamado sig_db (ou o nome que preferir). Você pode fazer isso via pgAdmin ou linha de comando:
+```bash
+SQL
+CREATE DATABASE sig_db;
+```
+### 4. Configuração das Variáveis de Ambiente (.env)
+Na raiz do projeto, crie um arquivo chamado .env. Copie e cole o conteúdo abaixo, ajustando conforme as credenciais do seu PostgreSQL local:
+
+# Configuração da Aplicação
+PORT=3000
+
+# Configuração do Banco de Dados (Ajuste USER e PASSWORD conforme sua máquina)
+DB_HOST=localhost
+DB_PORT=5432
+DB_USERNAME=postgres
+DB_PASSWORD=sua_senha_aqui
+DB_NAME=sig_db
+
+# Configuração de Segurança (JWT)
+JWT_SECRET=chave_secreta_tcc_2025
+JWT_EXPIRATION=1d
+
+### 5. Executar a Aplicação
+Com tudo configurado, inicie o servidor de desenvolvimento:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npm run start:dev
 ```
+Se tudo estiver correto, você verá logs do NestJS indicando que a aplicação iniciou e conectou ao banco de dados com sucesso. O servidor estará rodando em http://localhost:3000.
+---
+## 🧪 Como Testar
+Como o projeto foca no Backend, a validação deve ser feita via requisições HTTP.
+---
+### 2. Fluxo de Teste Recomendado (Via Postman)
+Siga esta ordem para validar as funcionalidades implementadas:
 
-## Resources
+A. Onboarding (Criação Inicial)
+Como o banco começa vazio, é necessário criar a primeira empresa e o usuário Administrador.
 
-Check out a few resources that may come in handy when working with NestJS:
+Rota: POST /companies/onboard
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+Body (JSON):
 
-## Support
+```bash
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+{
+  "name": "Depósito Alcear Bebidas",
+  "cnpj": "12.345.678/0001-90",
+  "full_name": "Joice",
+  "email": "joice@depositoalcear.com",
+  "password": "12345678",
+  "phone": "+55 71 98888-7777"
+}
+```
+B. Autenticação (Login)
+Rota: POST /auth/login
 
-## Stay in touch
+Body (JSON):
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+```bash
+{
+  "email": "admin@tcc.com",
+  "password": "123456"
+}
+```
+Resposta: Copie o access_token retornado. Atenção: Todas as rotas abaixo exigem este token no Header (Authorization: Bearer <token>).
 
-## License
+C. Gestão (CRUDs)
+Com o token, você pode testar:
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+POST /users - Cr
+
+POST /products - Criar produto manualmente.
+
+GET /products - Listar produtos.
+
+GET /products?q=coca - listar produto específico por texto.
+
+GET /products/ID - listar produto específico por ID.
+
+PUT /products/ID - Editar produto.
+
+PATCH /products/ID - Desativar e ativar produtos
+
+POST /companies-suppliers - Criar fornecedor.
+
+GET /companies-suppliers - Listar fornecedores.
+
+PUT /companies-suppliers - Editar fornecedores.
+
+PATCH /companies-suppliers/id/status - Ativar ou desativar fornecedores.
+
+POST /companies - Criar Empresa.
+
+PATCH /companies/{id} - Atualizar Empresa.
+
+PUT /roles/{id} - Atualizar Empresa.
+
+DELETE /companies/{id} - Deletar Empresa.
+
+GET /companies - Listar Empresa.
+
+D. Automação OCR (Destaque do TCC)
+Para testar a leitura de notas fiscais:
+
+Rota: POST /ocr/upload (ou rota equivalente de upload)
+
+Body: Selecione form-data. Adicione um campo file e faça o upload de uma imagem de nota fiscal (formato .jpg ou .png).
+
+Resultado Esperado: A API retornará um JSON com os dados extraídos (Nome do produto, valor, etc.) e, dependendo da implementação, já criará o registro no banco.
+
+🛠 Tecnologias Principais
+NestJS: Framework para construção de aplicações Node.js escaláveis.
+
+TypeORM: ORM para interação com o banco de dados PostgreSQL.
+
+Tesseract.js: Biblioteca utilizada para o motor de OCR (leitura de imagens).
+
+Passport/JWT: Estratégia de autenticação e segurança.
+
+📞 Suporte
+Em caso de dúvidas ou problemas na execução, favor entrar em contato com a aluna responsável: Joice Oliveira Mota
