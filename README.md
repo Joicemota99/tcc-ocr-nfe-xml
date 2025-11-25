@@ -139,10 +139,37 @@ DELETE /companies/{id} - Deletar Empresa.
 
 GET /companies - Listar Empresa.
 
-D. Automação OCR (Destaque do TCC)
-Para testar a leitura de notas fiscais:
+Criar User
+POST http://localhost:3001/users
 
-Rota: POST /ocr/upload (ou rota equivalente de upload)
+Login
+POST http://localhost:3001/auth/login
+
+Atualização de User
+PUT http://localhost:3001/users/uuid-do-user
+
+Listar usuarios
+GET http://localhost:3001/users
+
+Criar cargo
+POST http://localhost:3001/roles
+
+Atualizar cargo
+http://localhost:3001/role/uuid-do-cargo
+
+Listar cargos
+GET http://localhost:3001/roles
+
+OCR
+
+Invoices
+POST http://localhost:3001/invoices/ocr
+
+XML
+POST http://localhost:3001/invoices/company/uuid-do-fornecedor/xml
+
+OCR
+POST http://localhost:3001/invoices/company/uuid-do-fornecedor/
 
 Body: Selecione form-data. Adicione um campo file e faça o upload de uma imagem de nota fiscal (formato .jpg ou .png).
 
