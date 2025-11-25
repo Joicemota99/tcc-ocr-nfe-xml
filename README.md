@@ -160,16 +160,14 @@ http://localhost:3001/role/uuid-do-cargo
 Listar cargos
 GET http://localhost:3001/roles
 
-OCR
-
 Invoices
 POST http://localhost:3001/invoices/ocr
 
 XML
 POST http://localhost:3001/invoices/company/uuid-do-fornecedor/xml
 
-OCR
-POST http://localhost:3001/invoices/company/uuid-do-fornecedor/
+OCR - imagens
+POST http://localhost:3001/invoices/company/uuid-do-fornecedor/ocr-image
 
 Body: Selecione form-data. Adicione um campo file e faça o upload de uma imagem de nota fiscal (formato .jpg ou .png).
 
